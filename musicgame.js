@@ -16,6 +16,18 @@ function Quiz() {
 
   this._shuffleSongs();
 
+
+var divs = ""
+
+  for (i = 0; i < this.songs.length; i++) {
+    divs += '<div class="song">';
+    divs += '<audio id="' + this.songs[i].artist + '">';
+    divs += '<source="music/' + this.songs[i].audio + '" type="audio/mpeg">';
+    divs += 'Your browser does not support the audio tag.</audio></div>';
+  }
+
+  document.getElementById("container").innerHTML = divs;
+
 }
 
 //END OF CONSTRUCTOR
@@ -38,8 +50,7 @@ var quiz;
 
 $(document).ready(function() {
 quiz = new Quiz;
-console.log(quiz);
-
+console.log(quiz.songs);
 
 
 // $(".song").on("click", function() {
