@@ -19,14 +19,21 @@ function Quiz() {
 
 var divs = ""
 
+  // for (i = 0; i < this.songs.length; i++) {
+  //   divs += '<div class="song" id="' + this.songs[i].artist + '"><audio id="' + this.songs[i].title + '"><source src="music/' + this.songs[i].audio + '" type="audio/mpeg">Your browser does not support the audio tag.</audio></div>';
+  // }
+
   for (i = 0; i < this.songs.length; i++) {
-    divs += '<div class="song">';
-    divs += '<audio id="' + this.songs[i].artist + '">';
-    divs += '<source="music/' + this.songs[i].audio + '" type="audio/mpeg">';
+    divs += '<div class="song" id="' + this.songs[i].artist + '">';
+    // divs += '<audio id="' + this.songs[i].title.split(" ").join("_") + '">';
+    divs += '<audio id="song' + (i+1) + '">';
+    divs += '<source src="music/' + this.songs[i].audio + '" type="audio/mpeg">';
     divs += 'Your browser does not support the audio tag.</audio></div>';
   }
 
   document.getElementById("container").innerHTML = divs;
+
+
 
 }
 
@@ -45,27 +52,31 @@ Quiz.prototype._shuffleSongs = function() {
 };
 
 
+// _______END OF GAME PROTOTYPE_________
+
 
 var quiz;
+var currentSong = "";
 
 $(document).ready(function() {
 quiz = new Quiz;
 console.log(quiz.songs);
 
 
-// $(".song").on("click", function() {
-//   console.log("clicked");
-//   if ($(this).hasClass("playing")) {
-//     $(this).removeClass("playing");
-//     $('#player')[0].pause();
-//   }
-//   else {
-//     $(this).addClass("playing");
-//     $('#player')[0].play();
-//   }
-//
-//   console.log($(this).attr("class"));
-// });
+
+$(".song").on("click", function() {
+  console.log("clicked");
+
+  if ($(this).hasClass("playing")) {
+    $(this).removeClass("playing");
+    document.getElementById($(this.children).attr("id")).pause();
+  }
+  else {
+    $(this).addClass("playing");
+    document.getElementById($(this.children).attr("id")).play();
+  }
+
+});
 
 
 // <div class="song"><audio id="player">
