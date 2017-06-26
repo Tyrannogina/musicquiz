@@ -14,16 +14,12 @@ function Quiz() {
     { artist: "Franz Ferdinand",  title: "Take Me Out",  audio: "Franz Ferdinand - Take Me Out.mp3", similarArtists: ["Kaiser Chiefs", "Bloc Party", "Kasabian"]}
   ]
 
-  this.artistsArray = [];
+  this.answersArray = [];
   this._shuffleSongs();
   this._createArtistArray();
 
 
 var divSongs = ""
-
-  // for (i = 0; i < this.songs.length; i++) {
-  //   divs += '<div class="song" id="' + this.songs[i].artist + '"><audio id="' + this.songs[i].title + '"><source src="music/' + this.songs[i].audio + '" type="audio/mpeg">Your browser does not support the audio tag.</audio></div>';
-  // }
 
   for (i = 0; i < this.songs.length; i++) {
     divSongs += '<div class="song" id="' + this.songs[i].artist + '">';
@@ -59,9 +55,18 @@ Quiz.prototype._shuffleSongs = function() {
 
 Quiz.prototype._createArtistArray = function() {
   for (var i = 0; i < this.songs.length; i++) {
-    this.artistsArray.push(this.songs[i].artist);
+    this.answersArray.push(this.songs[i].artist);
   }
 };
+
+
+Quiz.prototype.generateAnswers = function (correctAnswer) {
+  var artistIndex = quiz.answersArray.indexOf(correctAnswer);
+  answersArray = quiz.songs[artistIndex].similarArtists;
+  answersArray.push(correctAnswer);
+  return answersArray;
+};
+
 
 
 
@@ -76,7 +81,6 @@ quiz = new Quiz;
 console.log(this);
 console.log(quiz.songs[0].artist);
 var correctAnswer = "";
-var that = this;
 
 
 
@@ -91,7 +95,7 @@ $(".song").on("click", function() {
   else {
     $(this).addClass("playing");
     correctAnswer = $(this).attr("id");
-    // console.log(quiz.findIndexByKeyValue(object, "artist", "David Bowie"));
+    console.log(quiz.generateAnswers(correctAnswer));
     // console.log(quiz.songs[0].artist);
     document.getElementById($(this.children).attr("id")).play();
     // setTimeout(document.getElementById($(this.children).attr("id")).pause(), 5000);
