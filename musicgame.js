@@ -15,15 +15,12 @@ function Quiz() {
   ]
 
   this.artistsArray = [];
-  this._shuffleSongs();
+  this.answersArray = [];
+  this._shuffle(this.songs);
   this._createArtistArray();
 
 
 var divSongs = ""
-
-  // for (i = 0; i < this.songs.length; i++) {
-  //   divs += '<div class="song" id="' + this.songs[i].artist + '"><audio id="' + this.songs[i].title + '"><source src="music/' + this.songs[i].audio + '" type="audio/mpeg">Your browser does not support the audio tag.</audio></div>';
-  // }
 
   for (i = 0; i < this.songs.length; i++) {
     divSongs += '<div class="song" id="' + this.songs[i].artist + '">';
@@ -42,17 +39,15 @@ var divSongs = ""
 //END OF CONSTRUCTOR
 
 
-
-
-Quiz.prototype._shuffleSongs = function() {
+Quiz.prototype._shuffle = function(array) {
   var i = 0;
   var j = 0;
   var temp = null;
-  for (i = this.songs.length - 1; i > 0; i -= 1) {
+  for (i = array.length - 1; i > 0; i -= 1) {
     j = Math.floor(Math.random() * (i + 1));
-    temp = this.songs[i];
-    this.songs[i] = this.songs[j];
-    this.songs[j] = temp;
+    temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
 };
 
@@ -64,6 +59,22 @@ Quiz.prototype._createArtistArray = function() {
 };
 
 
+Quiz.prototype.generateAnswers = function (correctAnswer) {
+  var artistIndex = quiz.artistsArray.indexOf(correctAnswer);
+  this.answersArray = quiz.songs[artistIndex].similarArtists;
+  this.answersArray.push(correctAnswer);
+  this._shuffle(this.answersArray);
+  return this.answersArray;
+};
+
+
+Quiz.prototype.distributeAnswers = function (answersArray) {
+  for (i = 0; i < this.answersArray.length; i++) {
+    document.getElementById("answer" + (i + 1)).innerHTML = this.answersArray[i];
+  }
+}
+
+
 
 // _______END OF GAME PROTOTYPE_________
 
@@ -73,10 +84,7 @@ var quiz;
 
 $(document).ready(function() {
 quiz = new Quiz;
-console.log(this);
-console.log(quiz.songs[0].artist);
 var correctAnswer = "";
-var that = this;
 
 
 
@@ -91,14 +99,14 @@ $(".song").on("click", function() {
   else {
     $(this).addClass("playing");
     correctAnswer = $(this).attr("id");
-    // console.log(quiz.findIndexByKeyValue(object, "artist", "David Bowie"));
-    // console.log(quiz.songs[0].artist);
+    quiz.generateAnswers(correctAnswer);
+    quiz.distributeAnswers(quiz.answersArray);
     document.getElementById($(this.children).attr("id")).play();
     // setTimeout(document.getElementById($(this.children).attr("id")).pause(), 5000);
   }
 
-  console.log(correctAnswer);
-  console.log(quiz.songs);
+
+
 
 });
 
