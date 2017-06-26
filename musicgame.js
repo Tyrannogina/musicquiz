@@ -75,6 +75,25 @@ Quiz.prototype.distributeAnswers = function (answersArray) {
 };
 
 
+Quiz.prototype.displayTimer = function () {
+  $("#timer").html("0:30");
+  var i = 29;
+  var intervalId = setInterval(function () {
+    if (i > 10) {
+      $("#timer").html("0:" + i);
+    }
+    else if (i > 0) {
+      $("#timer").html("0:0" + i);
+    }
+    else {
+      clearInterval(intervalId);
+    }
+
+    i--;
+  }, 1000);
+}
+
+
 
 
 // _______END OF GAME PROTOTYPE_________
@@ -93,7 +112,7 @@ var correctAnswer = "";
 // ON CLICK PLAY-PAUSE SONG
 
 $(".song").on("click", function() {
-  console.log("clicked");
+  console.log("clicked song");
 
   if ($(this).hasClass("playing")) {
     $(this).removeClass("playing");
@@ -108,16 +127,28 @@ $(".song").on("click", function() {
     document.getElementById($(this.children).attr("id")).play();
     var timeoutId = setTimeout(function () {
       document.getElementById($(that.children).attr("id")).pause();
-    }, 3000);
+    }, 30000);
+    // $("#timer").html("0:30");
+    console.log(quiz.displayTimer());
   }
 
+});
+
+//END SONG CLICK
+
+
+
+// START ANSWER CLICK
+
+$(".answer").on("click", function() {
+  console.log("clicked answer");
 
 
 
 });
 
 
-// END OF ON CLICK PLAY-PAUSE SONG
+
 
 
 
