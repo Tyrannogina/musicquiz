@@ -72,7 +72,8 @@ Quiz.prototype.distributeAnswers = function (answersArray) {
   for (i = 0; i < this.answersArray.length; i++) {
     document.getElementById("answer" + (i + 1)).innerHTML = this.answersArray[i];
   }
-}
+};
+
 
 
 
