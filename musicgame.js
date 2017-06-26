@@ -16,6 +16,7 @@ function Quiz() {
 
   this.artistsArray = [];
   this.answersArray = [];
+  this.intervalId;
   this._shuffle(this.songs);
   this._createArtistArray();
 
@@ -75,10 +76,12 @@ Quiz.prototype.distributeAnswers = function (answersArray) {
 };
 
 
+
+
 Quiz.prototype.displayTimer = function () {
   $("#timer").html("0:30");
   var i = 29;
-  var intervalId = setInterval(function () {
+  this.intervalId = setInterval(function () {
     if (i > 10) {
       $("#timer").html("0:" + i);
     }
@@ -86,7 +89,7 @@ Quiz.prototype.displayTimer = function () {
       $("#timer").html("0:0" + i);
     }
     else {
-      clearInterval(intervalId);
+      clearInterval(this.intervalId);
     }
 
     i--;
@@ -105,6 +108,7 @@ var quiz;
 $(document).ready(function() {
 quiz = new Quiz;
 var correctAnswer = "";
+var idSongPlaying = "";
 
 
 
@@ -114,21 +118,18 @@ var correctAnswer = "";
 $(".song").on("click", function() {
   console.log("clicked song");
 
-  if ($(this).hasClass("playing")) {
-    $(this).removeClass("playing");
-    document.getElementById($(this.children).attr("id")).pause();
-  }
-  else {
+  if (!$(this).hasClass("playing")) {
     var that = this;
     $(this).addClass("playing");
     correctAnswer = $(this).attr("id");
+    idSongPlaying = $(this.children).attr("id");
+    console.log(idSongPlaying);
     quiz.generateAnswers(correctAnswer);
     quiz.distributeAnswers(quiz.answersArray);
     document.getElementById($(this.children).attr("id")).play();
     var timeoutId = setTimeout(function () {
       document.getElementById($(that.children).attr("id")).pause();
     }, 30000);
-    // $("#timer").html("0:30");
     console.log(quiz.displayTimer());
   }
 
@@ -142,8 +143,9 @@ $(".song").on("click", function() {
 
 $(".answer").on("click", function() {
   console.log("clicked answer");
-
-
+  $(this).removeClass("playing");
+  document.getElementById(idSongPlaying).pause();
+  clearInterval(quiz.intervalId);
 
 });
 
