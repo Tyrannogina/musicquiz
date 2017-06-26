@@ -89,21 +89,26 @@ var correctAnswer = "";
 
 
 
+
 // ON CLICK PLAY-PAUSE SONG
 
 $(".song").on("click", function() {
   console.log("clicked");
+
   if ($(this).hasClass("playing")) {
     $(this).removeClass("playing");
     document.getElementById($(this.children).attr("id")).pause();
   }
   else {
+    var that = this;
     $(this).addClass("playing");
     correctAnswer = $(this).attr("id");
     quiz.generateAnswers(correctAnswer);
     quiz.distributeAnswers(quiz.answersArray);
     document.getElementById($(this.children).attr("id")).play();
-    // setTimeout(document.getElementById($(this.children).attr("id")).pause(), 5000);
+    var timeoutId = setTimeout(function () {
+      document.getElementById($(that.children).attr("id")).pause();
+    }, 3000);
   }
 
 
