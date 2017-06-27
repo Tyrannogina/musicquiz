@@ -100,15 +100,15 @@ Quiz.prototype.displayTimer = function () {
 
 Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
   var userAnswer = document.getElementById(answerClickedId).innerHTML;
-  document.getElementById("ready").innerHTML = "Next Song";
+  $("#ready > p").html("Next Song");
   if (userAnswer == correctAnswer) {
     this.score += this.timer * 100;
     $("#score").html(this.score);
-    document.getElementById("instructions").innerHTML = "Correct! Click 'Next Song' when you are ready.";
+    $("#instructions > p").html("Correct! Click 'Next Song' when you are ready.");
     return true;
   }
   else {
-    document.getElementById("instructions").innerHTML = "Wrong! Click 'Next Song' when you are ready.";
+    $("#instructions > p").html("Wrong! Click 'Next Song' when you are ready.");
     return false;
   }
 }
@@ -145,7 +145,7 @@ $(".ready").on("click", function() {
   songNumber = songNumber + 1;
   idSongPlaying = "song" + songNumber;
   correctAnswer = ($('#' + idSongPlaying).closest("div").attr("id"));
-  document.getElementById("instructions").innerHTML = "Guess the artist..."
+  $("#instructions > p").html("Guess the artist...");
   quiz.generateAnswers(correctAnswer);
   quiz.distributeAnswers(quiz.answersArray);
   quiz.playSong(idSongPlaying);
