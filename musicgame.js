@@ -17,6 +17,7 @@ function Quiz() {
   this.artistsArray = [];
   this.answersArray = [];
   this.intervalId;
+  this.timer;
   this._shuffle(this.songs);
   this._createArtistArray();
 
@@ -82,21 +83,42 @@ Quiz.prototype.displayTimer = function () {
   $("#timer").html("0:30");
   var i = 29;
   this.intervalId = setInterval(function () {
-    if (i > 10) {
-      $("#timer").html("0:" + i);
-    }
-    else if (i > 0) {
-      $("#timer").html("0:0" + i);
-    }
-    else {
-      clearInterval(this.intervalId);
-    }
-
+      if (i > 10) {
+        $("#timer").html("0:" + i);
+      }
+      else if (i > 0) {
+        $("#timer").html("0:0" + i);
+      }
+      else {
+        clearInterval(this.intervalId);
+      }
     i--;
+    this.timer = i+1;
+    console.log(this.timer);
   }, 1000);
 }
 
 
+Quiz.prototype.compareAnswers = function (answerClickedId, correctAnswer) {
+  var userAnswer = document.getElementById(answerClickedId).innerHTML
+  if (userAnswer == correctAnswer) {
+    console.log("yay");
+    $("#score").html(timer * 100);
+    return true
+
+  }
+  else {
+    console.log("yay");
+    return false
+  }
+}
+
+
+Quiz.prototype.givePoints = function () {
+  if (compareAnswers === true) {
+    $("#score").html(timer * 100);
+  }
+}
 
 
 // _______END OF GAME PROTOTYPE_________
@@ -109,7 +131,7 @@ $(document).ready(function() {
 quiz = new Quiz;
 var correctAnswer = "";
 var idSongPlaying = "";
-
+var answerClickedId = "";
 
 
 
@@ -126,11 +148,11 @@ $(".song").on("click", function() {
     console.log(idSongPlaying);
     quiz.generateAnswers(correctAnswer);
     quiz.distributeAnswers(quiz.answersArray);
-    document.getElementById($(this.children).attr("id")).play();
+    document.getElementById(idSongPlaying).play();
     var timeoutId = setTimeout(function () {
-      document.getElementById($(that.children).attr("id")).pause();
+      document.getElementById(idSongPlaying).pause();
     }, 30000);
-    console.log(quiz.displayTimer());
+    quiz.displayTimer();
   }
 
 });
@@ -143,15 +165,17 @@ $(".song").on("click", function() {
 
 $(".answer").on("click", function() {
   console.log("clicked answer");
+  answerClickedId = ($(this).attr("id"));
   $(this).removeClass("playing");
   document.getElementById(idSongPlaying).pause();
   clearInterval(quiz.intervalId);
+  quiz.compareAnswers(answerClickedId, correctAnswer);
 
 });
 
 
 
-
+// Carry on with trying to compare answers. Works when id is hard coded, not reconstructed.
 
 
 

@@ -16,7 +16,7 @@
 }
 
 #answers-container {
-  height: 200px;
+  height: 100px;
   width: 1000px;
   background-color: pink;
   margin: auto;
@@ -31,4 +31,15 @@
   border: 5px solid rgba(255, 255, 255, 0.2);
   background-color: blue;
 
+}
+
+
+.ready {
+  float: left;
+  height: 28px;
+  width: 78px;
+  margin: 5px;
+  border-radius: 10px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  background-color: green;
 }
