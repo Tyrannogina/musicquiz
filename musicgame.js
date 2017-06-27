@@ -18,6 +18,7 @@ function Quiz() {
   this.answersArray = [];
   this.intervalId;
   this.timer;
+  this.score = 0;
   this._shuffle(this.songs);
   this._createArtistArray();
 
@@ -40,7 +41,7 @@ var divSongs = ""
 };
 //END OF CONSTRUCTOR
 
-
+// PROTOTYPE //
 Quiz.prototype._shuffle = function(array) {
   var i = 0;
   var j = 0;
@@ -77,11 +78,10 @@ Quiz.prototype.distributeAnswers = function (answersArray) {
 };
 
 
-
-
 Quiz.prototype.displayTimer = function () {
   $("#timer").html("0:30");
   var i = 29;
+  that = this;
   this.intervalId = setInterval(function () {
       if (i > 10) {
         $("#timer").html("0:" + i);
@@ -93,32 +93,35 @@ Quiz.prototype.displayTimer = function () {
         clearInterval(this.intervalId);
       }
     i--;
-    this.timer = i+1;
-    console.log(this.timer);
+    that.timer = i+1;
   }, 1000);
 }
 
 
-Quiz.prototype.compareAnswers = function (answerClickedId, correctAnswer) {
-  var userAnswer = document.getElementById(answerClickedId).innerHTML
+Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
+  var userAnswer = document.getElementById(answerClickedId).innerHTML;
+  document.getElementById("ready").innerHTML = "Next Song";
   if (userAnswer == correctAnswer) {
-    console.log("yay");
-    $("#score").html(timer * 100);
-    return true
-
+    this.score += this.timer * 100;
+    $("#score").html(this.score);
+    document.getElementById("instructions").innerHTML = "Correct! Click 'Next Song' when you are ready.";
+    return true;
   }
   else {
-    console.log("yay");
-    return false
+    document.getElementById("instructions").innerHTML = "Wrong! Click 'Next Song' when you are ready.";
+    return false;
   }
 }
 
 
-Quiz.prototype.givePoints = function () {
-  if (compareAnswers === true) {
-    $("#score").html(timer * 100);
-  }
+Quiz.prototype.playSong = function (idSongPlaying) {
+  document.getElementById(idSongPlaying).play();
+  var timeoutId = setTimeout(function () {
+      document.getElementById(idSongPlaying).pause();
+    }, 30000);
 }
+
+
 
 
 // _______END OF GAME PROTOTYPE_________
@@ -130,6 +133,7 @@ var quiz;
 $(document).ready(function() {
 quiz = new Quiz;
 var correctAnswer = "";
+var songNumber = 0;
 var idSongPlaying = "";
 var answerClickedId = "";
 
@@ -137,23 +141,16 @@ var answerClickedId = "";
 
 // ON CLICK PLAY-PAUSE SONG
 
-$(".song").on("click", function() {
-  console.log("clicked song");
+$(".ready").on("click", function() {
+  songNumber = songNumber + 1;
+  idSongPlaying = "song" + songNumber;
+  correctAnswer = ($('#' + idSongPlaying).closest("div").attr("id"));
+  document.getElementById("instructions").innerHTML = "Guess the artist..."
+  quiz.generateAnswers(correctAnswer);
+  quiz.distributeAnswers(quiz.answersArray);
+  quiz.playSong(idSongPlaying);
+  quiz.displayTimer();
 
-  if (!$(this).hasClass("playing")) {
-    var that = this;
-    $(this).addClass("playing");
-    correctAnswer = $(this).attr("id");
-    idSongPlaying = $(this.children).attr("id");
-    console.log(idSongPlaying);
-    quiz.generateAnswers(correctAnswer);
-    quiz.distributeAnswers(quiz.answersArray);
-    document.getElementById(idSongPlaying).play();
-    var timeoutId = setTimeout(function () {
-      document.getElementById(idSongPlaying).pause();
-    }, 30000);
-    quiz.displayTimer();
-  }
 
 });
 
@@ -164,12 +161,10 @@ $(".song").on("click", function() {
 // START ANSWER CLICK
 
 $(".answer").on("click", function() {
-  console.log("clicked answer");
   answerClickedId = ($(this).attr("id"));
-  $(this).removeClass("playing");
   document.getElementById(idSongPlaying).pause();
   clearInterval(quiz.intervalId);
-  quiz.compareAnswers(answerClickedId, correctAnswer);
+  quiz.givePoints(answerClickedId, correctAnswer);
 
 });
 
