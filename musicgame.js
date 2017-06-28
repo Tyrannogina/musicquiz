@@ -149,6 +149,7 @@ var answerClickedId = "";
 // ON CLICK PLAY-PAUSE SONG
 
 $(".ready").on("click", function() {
+  $("#ready").css("pointer-events", "none");
   songNumber = songNumber + 1;
   idSongPlaying = "song" + songNumber;
   correctAnswer = ($('#' + idSongPlaying).closest("div").attr("id"));
@@ -168,12 +169,13 @@ $(".ready").on("click", function() {
 // START ANSWER CLICK
 
 $(".answer").on("click", function() {
-  answerClickedId = ($(this).attr("id"));
+  answerClickedId = ($(this).children("p").attr("id"));
+  console.log(answerClickedId);
   document.getElementById(idSongPlaying).pause();
   clearInterval(quiz.intervalId);
   quiz.givePoints(answerClickedId, correctAnswer);
   quiz.displayCover(correctAnswer);
-  console.log(correctAnswer);
+  $("#ready").css("pointer-events", "auto");
 });
 
 
