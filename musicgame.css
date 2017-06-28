@@ -17,6 +17,14 @@
   background-color: blue;
 }
 
+.guessed {
+  background: url(images/tick-icon.jpg) no-repeat;
+}
+
+.wrong {
+  background: url(images/tick-icon.jpg) no-repeat;
+}
+
 #answers-container {
   height: 200px;
   width: 500px;
@@ -59,6 +67,9 @@
 .dashboard {
   margin: auto;
   border: 1px solid black;
+  height: 150px;
+  width: 800px;
+  position: relative;
 }
 
 #timer {
@@ -68,17 +79,20 @@
 }
 
 .timer-score {
-  border: 1px solid red
-  width: 50%;
+  border: 1px solid red;
+  float: right;
+  margin: 32px 100px 20px 20px;
+  width: 140px;
 }
 
 .score {
   border: 1px solid black;
-  width: 40%;
-  margin: 20px 20px;
 }
 
 #instructions {
   border: 1px solid black;
-  width: 50%;
+  float: left;
+  width: 400px;
+  margin: 20px 20px 20px 100px;
+  text-align: center;
 }
