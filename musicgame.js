@@ -19,6 +19,7 @@ function Quiz() {
   this.intervalId;
   this.timer;
   this.score = 0;
+  this.userAnswer;
   this._shuffle(this.songs);
   this._createArtistArray();
 
@@ -99,9 +100,9 @@ Quiz.prototype.displayTimer = function () {
 
 
 Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
-  var userAnswer = document.getElementById(answerClickedId).innerHTML;
+  this.userAnswer = document.getElementById(answerClickedId).innerHTML;
   $("#ready > p").html("Next Song");
-  if (userAnswer == correctAnswer) {
+  if (this.userAnswer == correctAnswer) {
     this.score += this.timer * 100;
     $("#score").html(this.score);
     $("#instructions > p").html("Correct! Click 'Next Song' when you are ready.");
@@ -125,9 +126,14 @@ Quiz.prototype.playSong = function (idSongPlaying) {
 Quiz.prototype.displayCover = function (correctAnswer) {
   var artistIndex = quiz.artistsArray.indexOf(correctAnswer);
   var artistImage = quiz.songs[artistIndex].image;
-  document.getElementById(correctAnswer).style.background = 'url(images/'+ artistImage +') no-repeat';
+  if (this.userAnswer === correctAnswer) {
+    console.log("Correct!!!")
+    document.getElementById(correctAnswer).style.background = 'url(images/tick-icon.png), url(images/'+ artistImage +') no-repeat';
+  }
+  else {
+    document.getElementById(correctAnswer).style.background = 'url(images/'+ artistImage +') no-repeat';
+  }
 }
-
 
 
 
