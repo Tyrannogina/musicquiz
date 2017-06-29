@@ -16,16 +16,16 @@ function Quiz() {
     ],
 
     [
-    { artist: "Backstreet Boys",  title: "Life on Mars",  audio: "Backstreet Boys - I Want It That Way.mp3", similarArtists: ["Lou Reed", "Iggy Pop", "The Velvet Underground"], image: "davidbowie.jpg", genre: "mix90"},
-    { artist: "TLC",  title: "Whole Lotta Love",  audio: "TLC - No Scrubs.mp3", similarArtists: ["Aerosmith", "Deep Purple", "The Who"], image: "ledzeppelin.jpg", genre: "mix90"},
-    { artist: "Green Day",  title: "Feel Good Inc",  audio: "Green Day - Basket Case.mp3", similarArtists: ["Blur", "LCD Soundsystem", "The Chemical Brothers"], image: "gorillaz.jpg", genre: "mix90"},
-    { artist: "Incubus",  title: "The Bay",  audio: "Incubus - Drive.mp3", similarArtists: ["Friendly Fires", "Hot Chip", "The Rapture"], image: "metronomy.jpg", genre: "mix90"},
-    { artist: "No Doubt",  title: "Elephant",  audio: "No Doubt - Dont Speak.mp3", similarArtists: ["Unknown Mortal Orchestra", "Beach House", "Real Estate"], image: "tameimpala.jpg", genre: "mix90"},
-    { artist: "Smash Mouth",  title: "Break On Through",  audio: "Smash Mouth - All Star.mp3", similarArtists: ["Jefferson Airplane", "Jimmy Hendrix", "The Kinks"], image: "thedoors.jpg", genre: "mix90"},
-    { artist: "Eagle-Eye Cherry",  title: "Lonely Boy",  audio: "Eagle Eye Cherry - Save Tonight.mp3", similarArtists: ["The White Stripes", "Band of Skulls", "The Kills"], image: "theblackkeys.jpg", genre: "mix90"},
-    { artist: "Destiny's Child",  title: "Girls and Boys",  audio: "Destinys Child - Say My Name.mp3", similarArtists: ["Supergrass", "Pulp", "The Verve"], image: "blur.jpg", genre: "mix90"},
-    { artist: "Will Smith",  title: "One More Time",  audio: "Will Smith - Gettin Jiggy Wit It.mp3", similarArtists: ["Digitalism", "Justice", "The Chemical Brothers"], image: "daftpunk.jpg", genre: "mix90"},
-    { artist: "Blackstreet",  title: "Take Me Out",  audio: "Blackstreet - No Diggity.mp3", similarArtists: ["Kaiser Chiefs", "Bloc Party", "Kasabian"], image: "franzferdinand.jpg", genre: "mix90"}
+      { artist: "Backstreet Boys",  title: "I Want It That Way",  audio: "Backstreet Boys - I Want It That Way.mp3", similarArtists: ["NSYNC", "Boyzone", "New Kids On The Block"], image: "backstreetboys.jpg", genre: "mix90"},
+      { artist: "TLC",  title: "No Scrubs",  audio: "TLC - No Scrubs.mp3", similarArtists: ["En Vogue", "Destiny's Child", "Aaliyah"], image: "tlc.jpg", genre: "mix90"},
+      { artist: "Green Day",  title: "Basket Case",  audio: "Green Day - Basket Case.mp3", similarArtists: ["The Offspring", "Good Charlotte", "Sum 41"], image: "greenday.jpg", genre: "mix90"},
+      { artist: "Incubus",  title: "Drive",  audio: "Incubus - Drive.mp3", similarArtists: ["Foo Fighters", "Sugar Ray", "Audioslave"], image: "incubus.jpg", genre: "mix90"},
+      { artist: "No Doubt",  title: "Dont Speak",  audio: "No Doubt - Dont Speak.mp3", similarArtists: ["Garbage", "The Cardigans", "Natalie Imbruglia"], image: "nodoubt.jpg", genre: "mix90"},
+      { artist: "Smash Mouth",  title: "All Star",  audio: "Smash Mouth - All Star.mp3", similarArtists: ["Spin Doctors", "Cake", "Sugar Ray"], image: "smashmouth.jpg", genre: "mix90"},
+      { artist: "Eagle-Eye Cherry",  title: "Save Tonight",  audio: "Eagle Eye Cherry - Save Tonight.mp3", similarArtists: ["The Goo Goo Dolls", "Counting Crows", "Lenny Kravitz"], image: "eagleeyecherry.jpg", genre: "mix90"},
+      { artist: "Destiny's Child",  title: "Say My Name",  audio: "Destinys Child - Say My Name.mp3", similarArtists: ["TLC", "Ashanti", "Aaliyah"], image: "destinyschild.jpg", genre: "mix90"},
+      { artist: "Will Smith",  title: "Gettin Jiggy With It",  audio: "Will Smith - Gettin Jiggy With It.mp3", similarArtists: ["Coolio", "Puff Daddy", "Run DMC"], image: "willsmith.jpg", genre: "mix90"},
+      { artist: "Blackstreet",  title: "No Diggity",  audio: "Blackstreet - No Diggity.mp3", similarArtists: ["Next", "Jodeci", "Dru Hill"], image: "blackstreet.jpg", genre: "mix90"}
     ]
   ]
 
@@ -67,7 +67,6 @@ var divSongs = ""
 
   for (i = 0; i < 10; i++) {
     divSongs += '<div class="song" id="' + this.songs[this.userChoice][i].artist + '">';
-    // divs += '<audio id="' + this.songs[i].title.split(" ").join("_") + '">';
     divSongs += '<audio id="song' + (i+1) + '">';
     divSongs += '<source src="music/' + this.songs[this.userChoice][i].audio + '" type="audio/mpeg">';
     divSongs += 'Your browser does not support the audio tag.</audio></div>';
@@ -125,6 +124,7 @@ Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
   this.userAnswer = document.getElementById(answerClickedId).innerHTML;
   if (this.userAnswer == correctAnswer) {
     this.score += this.timer * 100;
+    // $("#timer").addClass("animated zoomOutDown");
     $("#score").html(this.score);
       if (this.songsPlayed < 10) {
       $("#ready > p").html("Next Song");
@@ -186,6 +186,8 @@ var songNumber = 0;
 var idSongPlaying = "";
 var answerClickedId = "";
 
+
+
 //ON CLICK USER CHOICE
 $(".option").on("click", function() {
   quiz.userChoice = ($(this).attr("id"));
@@ -200,6 +202,7 @@ $(".option").on("click", function() {
 
 $(".ready").on("click", function() {
   $("#ready").css("pointer-events", "none");
+  $("#timer").removeClass("animated zoomOutDown");
   quiz.songsPlayed +=1;
   songNumber = songNumber + 1;
   idSongPlaying = "song" + songNumber;
@@ -221,20 +224,12 @@ $(".ready").on("click", function() {
 
 $(".answer").on("click", function() {
   answerClickedId = ($(this).children("p").attr("id"));
-  console.log(answerClickedId);
   document.getElementById(idSongPlaying).pause();
   clearInterval(quiz.intervalId);
   quiz.givePoints(answerClickedId, correctAnswer);
   quiz.displayCover(correctAnswer);
   $("#ready").css("pointer-events", "auto");
 });
-
-
-
-// Carry on with trying to compare answers. Works when id is hard coded, not reconstructed.
-
-
-
 
 
 
