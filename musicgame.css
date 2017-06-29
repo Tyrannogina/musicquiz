@@ -1,10 +1,35 @@
+body {
+  background: linear-gradient(37deg, rgba(153,218,255,1) 0%, rgba(0,128,128,1) 100%);
+}
+
+#options-container {
+  height: 100px;
+  width: 600px;
+  background-color: pink;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.option {
+  float: left;
+  height: 50px;
+  width: 250px;
+  margin: 7px 20px;
+  border-radius: 10px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  background-color: blue;
+  position: relative;
+  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
+}
+
+
 #container {
   height: 100px;
   width: 1000px;
   background-color: pink;
   border-radius: 10px;
   margin: 20px auto;
-
+  background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,0));
 }
 
 .song {
@@ -15,6 +40,8 @@
   border-radius: 10px;
   border: 5px solid rgba(255, 255, 255, 0.2);
   background: url(images/question.png) no-repeat;
+  background-size: 50px;
+  background-position: center;
 }
 
 .guessed {
@@ -25,35 +52,47 @@
   background: url(images/tick-icon.jpg) no-repeat;
 }
 
+.answers-button-container {
+  height: 150px;
+  width: 800px;
+  background-color: orange;
+  border-radius: 10px;
+  margin: auto;
+  position: relative;
+}
+
 #answers-container {
-  height: 200px;
-  width: 500px;
+  height: 150px;
+  width: 600px;
   background-color: pink;
   border-radius: 10px;
   margin: auto;
+  position: relative;
+  float: left;
 }
 
 .answer {
   float: left;
-  height: 70px;
-  width: 200px;
-  margin: 10px 20px;
+  height: 50px;
+  width: 250px;
+  margin: 7px 20px;
   border-radius: 10px;
   border: 5px solid rgba(255, 255, 255, 0.2);
   background-color: blue;
   position: relative;
-
+  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
 }
 
-
 .ready {
-  height: 28px;
-  width: 78px;
-  margin: 20px auto;
-  border-radius: 10px;
+  height: 110px;
+  width: 110px;
+  margin: 20px 30px ;
+  border-radius: 50%;
   border: 5px solid rgba(255, 255, 255, 0.2);
   background-color: green;
   position: relative;
+  float:right;
+  padding: 3px;
 }
 
 .ready > p {
@@ -63,26 +102,31 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+  font-size: 30px;
 }
 
 .dashboard {
   margin: auto;
   height: 150px;
-  width: 800px;
+  width: 1000px;
   position: relative;
 }
 
 #timer {
   width: 140px;
   margin: 20px 20px;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 30px;
 }
 
 .timer-score {
   border: 1px solid red;
   float: right;
-  margin: 20px 100px 20px 20px;
-  width: 140px;
+  margin: 20px 200px 20px 20px;
+  width: 180px;
   text-align: center;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 20px;
 }
 
 .score {
@@ -94,9 +138,23 @@
 #instructions {
   border: 1px solid black;
   float: left;
-  width: 400px;
-  margin: 20px 20px 20px 100px;
+  width: 450px;
+  height: 150px;
+  margin: 20px 20px 20px 80px;
+  position: relative;
+}
+
+#instructions > p {
   text-align: center;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 20px;
+  padding: 5px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
 
 .answer > p {
@@ -105,5 +163,7 @@
   top: 50%;
   left: 50%;
   margin-right: -50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  font-family: 'Oxygen', sans-serif;
+  padding: 5px;
 }
