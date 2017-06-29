@@ -2,16 +2,31 @@ console.log("connected")
 
 function Quiz() {
   this.songs = [
-    { artist: "David Bowie",  title: "Life on Mars",  audio: "David Bowie - Life On Mars.mp3", similarArtists: ["Lou Reed", "Iggy Pop", "The Velvet Underground"], image: "davidbowie.jpg", genre: "mixrockindie"},
-    { artist: "Led Zeppelin",  title: "Whole Lotta Love",  audio: "Led Zeppelin - Whole Lotta Love.mp3", similarArtists: ["Aerosmith", "Deep Purple", "The Who"], image: "ledzeppelin.jpg", genre: "mixrockindie"},
-    { artist: "Gorillaz",  title: "Feel Good Inc",  audio: "Gorillaz - Feel Good Inc.mp3", similarArtists: ["Blur", "LCD Soundsystem", "The Chemical Brothers"], image: "gorillaz.jpg", genre: "mixrockindie"},
-    { artist: "Metronomy",  title: "The Bay",  audio: "Metronomy - The Bay.mp3", similarArtists: ["Friendly Fires", "Hot Chip", "The Rapture"], image: "metronomy.jpg", genre: "mixrockindie"},
-    { artist: "Tame Impala",  title: "Elephant",  audio: "Tame Impala - Elephant.mp3", similarArtists: ["Unknown Mortal Orchestra", "Beach House", "Real Estate"], image: "tameimpala.jpg", genre: "mixrockindie"},
-    { artist: "The Doors",  title: "Break On Through",  audio: "The Doors - Break On Through.mp3", similarArtists: ["Jefferson Airplane", "Jimmy Hendrix", "The Kinks"], image: "thedoors.jpg", genre: "mixrockindie"},
-    { artist: "The Black Keys",  title: "Lonely Boy",  audio: "The Black Keys - Lonely Boy.mp3", similarArtists: ["The White Stripes", "Band of Skulls", "The Kills"], image: "theblackkeys.jpg", genre: "mixrockindie"},
-    { artist: "Blur",  title: "Girls and Boys",  audio: "Blur - Girls and Boys.mp3", similarArtists: ["Supergrass", "Pulp", "The Verve"], image: "blur.jpg", genre: "mixrockindie"},
-    { artist: "Daft Punk",  title: "One More Time",  audio: "Daft Punk - One More Time.mp3", similarArtists: ["Digitalism", "Justice", "The Chemical Brothers"], image: "daftpunk.jpg", genre: "mixrockindie"},
-    { artist: "Franz Ferdinand",  title: "Take Me Out",  audio: "Franz Ferdinand - Take Me Out.mp3", similarArtists: ["Kaiser Chiefs", "Bloc Party", "Kasabian"], image: "franzferdinand.jpg", genre: "mixrockindie"}
+    [
+      { artist: "David Bowie",  title: "Life on Mars",  audio: "David Bowie - Life On Mars.mp3", similarArtists: ["Lou Reed", "Iggy Pop", "The Velvet Underground"], image: "davidbowie.jpg", genre: "mixrockindie"},
+      { artist: "Led Zeppelin",  title: "Whole Lotta Love",  audio: "Led Zeppelin - Whole Lotta Love.mp3", similarArtists: ["Aerosmith", "Deep Purple", "The Who"], image: "ledzeppelin.jpg", genre: "mixrockindie"},
+      { artist: "Gorillaz",  title: "Feel Good Inc",  audio: "Gorillaz - Feel Good Inc.mp3", similarArtists: ["Blur", "LCD Soundsystem", "The Chemical Brothers"], image: "gorillaz.jpg", genre: "mixrockindie"},
+      { artist: "Metronomy",  title: "The Bay",  audio: "Metronomy - The Bay.mp3", similarArtists: ["Friendly Fires", "Hot Chip", "The Rapture"], image: "metronomy.jpg", genre: "mixrockindie"},
+      { artist: "Tame Impala",  title: "Elephant",  audio: "Tame Impala - Elephant.mp3", similarArtists:  ["Unknown Mortal Orchestra", "Beach House", "Real Estate"], image: "tameimpala.jpg", genre: "mixrockindie"},
+      { artist: "The Doors",  title: "Break On Through",  audio: "The Doors - Break On Through.mp3", similarArtists: ["Jefferson Airplane", "Jimmy Hendrix", "The Kinks"], image: "thedoors.jpg", genre: "mixrockindie"},
+      { artist: "The Black Keys",  title: "Lonely Boy",  audio: "The Black Keys - Lonely Boy.mp3", similarArtists: ["The White Stripes", "Band of Skulls", "The Kills"], image: "theblackkeys.jpg", genre: "mixrockindie"},
+      { artist: "Blur",  title: "Girls and Boys",  audio: "Blur - Girls and Boys.mp3", similarArtists: ["Supergrass", "Pulp", "The Verve"], image: "blur.jpg", genre: "mixrockindie"},
+      { artist: "Daft Punk",  title: "One More Time",  audio: "Daft Punk - One More Time.mp3", similarArtists: ["Digitalism", "Justice", "The Chemical Brothers"], image: "daftpunk.jpg", genre: "mixrockindie"},
+      { artist: "Franz Ferdinand",  title: "Take Me Out",  audio: "Franz Ferdinand - Take Me Out.mp3", similarArtists: ["Kaiser Chiefs", "Bloc Party", "Kasabian"], image: "franzferdinand.jpg", genre: "mixrockindie"}
+    ],
+
+    [
+    { artist: "Backstreet Boys",  title: "Life on Mars",  audio: "Backstreet Boys - I Want It That Way.mp3", similarArtists: ["Lou Reed", "Iggy Pop", "The Velvet Underground"], image: "davidbowie.jpg", genre: "mix90"},
+    { artist: "TLC",  title: "Whole Lotta Love",  audio: "TLC - No Scrubs.mp3", similarArtists: ["Aerosmith", "Deep Purple", "The Who"], image: "ledzeppelin.jpg", genre: "mix90"},
+    { artist: "Green Day",  title: "Feel Good Inc",  audio: "Green Day - Basket Case.mp3", similarArtists: ["Blur", "LCD Soundsystem", "The Chemical Brothers"], image: "gorillaz.jpg", genre: "mix90"},
+    { artist: "Incubus",  title: "The Bay",  audio: "Incubus - Drive.mp3", similarArtists: ["Friendly Fires", "Hot Chip", "The Rapture"], image: "metronomy.jpg", genre: "mix90"},
+    { artist: "No Doubt",  title: "Elephant",  audio: "No Doubt - Dont Speak.mp3", similarArtists: ["Unknown Mortal Orchestra", "Beach House", "Real Estate"], image: "tameimpala.jpg", genre: "mix90"},
+    { artist: "Smash Mouth",  title: "Break On Through",  audio: "Smash Mouth - All Star.mp3", similarArtists: ["Jefferson Airplane", "Jimmy Hendrix", "The Kinks"], image: "thedoors.jpg", genre: "mix90"},
+    { artist: "Eagle-Eye Cherry",  title: "Lonely Boy",  audio: "Eagle Eye Cherry - Save Tonight.mp3", similarArtists: ["The White Stripes", "Band of Skulls", "The Kills"], image: "theblackkeys.jpg", genre: "mix90"},
+    { artist: "Destiny's Child",  title: "Girls and Boys",  audio: "Destinys Child - Say My Name.mp3", similarArtists: ["Supergrass", "Pulp", "The Verve"], image: "blur.jpg", genre: "mix90"},
+    { artist: "Will Smith",  title: "One More Time",  audio: "Will Smith - Gettin Jiggy Wit It.mp3", similarArtists: ["Digitalism", "Justice", "The Chemical Brothers"], image: "daftpunk.jpg", genre: "mix90"},
+    { artist: "Blackstreet",  title: "Take Me Out",  audio: "Blackstreet - No Diggity.mp3", similarArtists: ["Kaiser Chiefs", "Bloc Party", "Kasabian"], image: "franzferdinand.jpg", genre: "mix90"}
+    ]
   ]
 
   this.artistsArray = [];
@@ -20,21 +35,10 @@ function Quiz() {
   this.timer;
   this.score = 0;
   this.userAnswer;
-  this._shuffle(this.songs);
-  this._createArtistArray();
-
-
-var divSongs = ""
-
-  for (i = 0; i < this.songs.length; i++) {
-    divSongs += '<div class="song" id="' + this.songs[i].artist + '">';
-    // divs += '<audio id="' + this.songs[i].title.split(" ").join("_") + '">';
-    divSongs += '<audio id="song' + (i+1) + '">';
-    divSongs += '<source src="music/' + this.songs[i].audio + '" type="audio/mpeg">';
-    divSongs += 'Your browser does not support the audio tag.</audio></div>';
-  }
-
-  document.getElementById("container").innerHTML = divSongs;
+  this.userChoice = "";
+  this.songsPlayed = 0;
+  this._shuffle(this.songs[0]);
+  this._shuffle(this.songs[1]);
 
 
 
@@ -43,6 +47,7 @@ var divSongs = ""
 //END OF CONSTRUCTOR
 
 // PROTOTYPE //
+
 Quiz.prototype._shuffle = function(array) {
   var i = 0;
   var j = 0;
@@ -56,16 +61,33 @@ Quiz.prototype._shuffle = function(array) {
 };
 
 
-Quiz.prototype._createArtistArray = function() {
-  for (var i = 0; i < this.songs.length; i++) {
-    this.artistsArray.push(this.songs[i].artist);
+Quiz.prototype._createDivs = function () {
+
+var divSongs = ""
+
+  for (i = 0; i < 10; i++) {
+    divSongs += '<div class="song" id="' + this.songs[this.userChoice][i].artist + '">';
+    // divs += '<audio id="' + this.songs[i].title.split(" ").join("_") + '">';
+    divSongs += '<audio id="song' + (i+1) + '">';
+    divSongs += '<source src="music/' + this.songs[this.userChoice][i].audio + '" type="audio/mpeg">';
+    divSongs += 'Your browser does not support the audio tag.</audio></div>';
   }
+
+  document.getElementById("container").innerHTML = divSongs;
+};
+
+
+Quiz.prototype._createArtistArray = function() {
+  for (var i = 0; i < this.songs[this.userChoice].length; i++) {
+      this.artistsArray.push(this.songs[this.userChoice][i].artist);
+  }
+  return this.artistsArray;
 };
 
 
 Quiz.prototype.generateAnswers = function (correctAnswer) {
   var artistIndex = quiz.artistsArray.indexOf(correctAnswer);
-  this.answersArray = quiz.songs[artistIndex].similarArtists;
+  this.answersArray = quiz.songs[this.userChoice][artistIndex].similarArtists;
   this.answersArray.push(correctAnswer);
   this._shuffle(this.answersArray);
   return this.answersArray;
@@ -101,15 +123,30 @@ Quiz.prototype.displayTimer = function () {
 
 Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
   this.userAnswer = document.getElementById(answerClickedId).innerHTML;
-  $("#ready > p").html("Next Song");
   if (this.userAnswer == correctAnswer) {
     this.score += this.timer * 100;
     $("#score").html(this.score);
-    $("#instructions > p").html("Correct! Click 'Next Song' when you are ready.");
-    return true;
+      if (this.songsPlayed < 10) {
+      $("#ready > p").html("Next Song");
+      $("#instructions > p").html("Correct! Click 'Next Song' when you are ready.");
+      }
+      else {
+        $("#ready > p").html("THE END");
+        $("#instructions > p").html("Correct! The game is over, refresh to play again!");
+        $("#ready").css("pointer-events", "none");
+      }
+      return true;
   }
   else {
+    if (this.songsPlayed < 10) {
+    $("#ready > p").html("Next Song");
     $("#instructions > p").html("Wrong! Click 'Next Song' when you are ready.");
+    }
+    else {
+      $("#ready > p").html("THE END");
+      $("#instructions > p").html("Wrong! The game is over, refresh to play again!");
+      $("#ready").css("pointer-events", "none");
+    }
     return false;
   }
 }
@@ -125,9 +162,8 @@ Quiz.prototype.playSong = function (idSongPlaying) {
 
 Quiz.prototype.displayCover = function (correctAnswer) {
   var artistIndex = quiz.artistsArray.indexOf(correctAnswer);
-  var artistImage = quiz.songs[artistIndex].image;
+  var artistImage = quiz.songs[this.userChoice][artistIndex].image;
   if (this.userAnswer === correctAnswer) {
-    console.log("Correct!!!")
     document.getElementById(correctAnswer).style.background = 'url(images/tick-icon.png), url(images/'+ artistImage +') no-repeat';
   }
   else {
@@ -150,12 +186,21 @@ var songNumber = 0;
 var idSongPlaying = "";
 var answerClickedId = "";
 
+//ON CLICK USER CHOICE
+$(".option").on("click", function() {
+  quiz.userChoice = ($(this).attr("id"));
+  quiz._createDivs()
+  quiz._createArtistArray();
+  $(".option").css("pointer-events", "none");
+});
+
 
 
 // ON CLICK PLAY-PAUSE SONG
 
 $(".ready").on("click", function() {
   $("#ready").css("pointer-events", "none");
+  quiz.songsPlayed +=1;
   songNumber = songNumber + 1;
   idSongPlaying = "song" + songNumber;
   correctAnswer = ($('#' + idSongPlaying).closest("div").attr("id"));
