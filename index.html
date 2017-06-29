@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Project 1 - TEST</title>
     <link rel="stylesheet" href="musicgame.css">
-    <link href="https://fonts.googleapis.com/css?family=Oxygen|PT+Sans+Narrow|Quicksand|Yellowtail" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700|Oxygen|PT+Sans+Narrow|Quicksand|Yellowtail" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   </head>
   <body>
@@ -16,26 +16,29 @@
 
 
     <div id="container"></div>
+    
+        <div class="answers-button-container">
 
-<div class="answers-button-container">
+            <div id="answers-container">
+              <div class="answer hvr-underline-from-left"><p id="answer1"></p></div>
+              <div class="answer hvr-underline-from-left"><p id="answer2"></p></div>
+              <div class="answer hvr-underline-from-left"><p id="answer3"></p></div>
+              <div class="answer hvr-underline-from-left"><p id="answer4"></p></div>
 
-    <div id="answers-container">
-      <div class="answer hvr-underline-from-left"><p id="answer1"></p></div>
-      <div class="answer hvr-underline-from-left"><p id="answer2"></p></div>
-      <div class="answer hvr-underline-from-left"><p id="answer3"></p></div>
-      <div class="answer hvr-underline-from-left"><p id="answer4"></p></div>
+            </div>
 
-    </div>
+            <div class="play-ready-container">
+              <div class="play-button">
+                <div class="ready" id="ready"><p>Ready</p></div>
+              </div>
+            </div>
 
-    <div class="ready" id="ready"><p>Ready</p></div>
-
-</div>
+        </div>
 
     <div class="dashboard">
 
       <div class="timer-score">
         <div id="timer">0:00</div>
-
         <div class="score">Score: <span id="score">0</span></div>
       </div>
 
@@ -44,8 +47,6 @@
       Click "Ready" to start the first song.</p></div>
 
     </div>
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="musicgame.js"></script>

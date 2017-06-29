@@ -1,13 +1,24 @@
+@font-face {
+    font-family: Aller;
+    src: url(AllerDisplay.ttf);
+}
+
+html, body{ padding: 0;margin: 0; height: 100%; overflow: hidden}
+
+*:before *:after {
+  box-sizing: border-box;
+}
+
 body {
-  background: linear-gradient(37deg, rgba(153,218,255,1) 0%, rgba(0,128,128,1) 100%);
+  background-image: linear-gradient(127deg, #eeeeee, #efdef2 14%, #64c9f5);
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* OPTIONS */
 
 #options-container {
-  height: 100px;
-  width: 600px;
-  background-color: pink;
+  height: 80px;
+  width: 700px;
   border-radius: 10px;
   margin: auto;
 }
@@ -15,13 +26,11 @@ body {
 .option {
   float: left;
   height: 50px;
-  width: 250px;
-  margin: 7px 20px;
-  border-radius: 10px;
-  border: 5px solid rgba(255, 255, 255, 0.2);
-  background-color: blue;
+  width: 300px;
+  margin: 10px 20px;
+  color: white;
+  font-size: 30px;
   position: relative;
-  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
 }
 
 .option > p {
@@ -31,7 +40,7 @@ body {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  font-family: 'Oxygen', sans-serif;
+  font-family: Aller;
   padding: 5px;
 }
 
@@ -41,10 +50,8 @@ body {
 #container {
   height: 100px;
   width: 1000px;
-  background-color: pink;
   border-radius: 10px;
   margin: 20px auto;
-  background-image: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,0));
 }
 
 .song {
@@ -65,7 +72,6 @@ body {
 .answers-button-container {
   height: 150px;
   width: 800px;
-  background-color: orange;
   border-radius: 10px;
   margin: auto;
   position: relative;
@@ -74,23 +80,19 @@ body {
 #answers-container {
   height: 150px;
   width: 600px;
-  background-color: pink;
   border-radius: 10px;
   margin: auto;
-  position: relative;
-  float: left;
+  position: absolute;
 }
 
 .answer {
-  float: left;
-  height: 50px;
   width: 250px;
-  margin: 7px 20px;
-  border-radius: 10px;
-  border: 5px solid rgba(255, 255, 255, 0.2);
-  background-color: blue;
+	height: 70px;
+  margin: 5px 20px;
+  border-radius: 8px;
+  background-image: radial-gradient(circle at 4% 4%, #cfdff9, #8fbff8);
+	box-shadow: 0 2px 16px 0 rgba(255, 255, 255, 0.5);
   position: relative;
-  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0));
 }
 
 .answer > p {
@@ -100,20 +102,31 @@ body {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  font-family: 'Oxygen', sans-serif;
+  font-weight: 700;
   padding: 5px;
 }
 
+
+/* READY BUTTON */
+.play-ready-container {
+  height: 150px;
+  width: 200px;
+  float: right;
+}
+
+.play-button {
+  background: url(images/play.png) no-repeat;
+  background-position: center;
+  height: 130px;
+  width: 200px;
+  position: absolute;
+}
+
 .ready {
-  height: 110px;
-  width: 110px;
-  margin: 20px 30px ;
-  border-radius: 50%;
-  border: 5px solid rgba(255, 255, 255, 0.2);
-  background-color: green;
-  position: relative;
-  float:right;
-  padding: 3px;
+  height: 50px;
+  width: 200px;
+  margin: 130px auto;
+  position: absolute;
 }
 
 .ready > p {
@@ -125,13 +138,15 @@ body {
   margin-right: -50%;
   transform: translate(-50%, -50%);
   font-size: 25px;
+  font-weight: 700;
+  color: #4A90E2;
 }
+
 
 /* SCORE DASHBOARD */
 
 .dashboard {
-  border: 1px solid green;
-  margin: 20px auto;
+  margin: 50px auto;
   height: 150px;
   width: 1000px;
   position: relative;
@@ -140,40 +155,39 @@ body {
 #timer {
   width: 140px;
   margin: 20px 20px;
-  font-family: 'Oxygen', sans-serif;
   font-size: 30px;
 }
 
 .timer-score {
-  border: 1px solid red;
-  float: right;
-  margin: 20px auto;
   width: 180px;
   text-align: center;
-  font-family: 'Oxygen', sans-serif;
+  font-weight: 700;
   font-size: 20px;
-  position: relative;
+  float: right;
+  margin: 10px 200px auto 0px;
+  color: #2a5b93;
 }
 
 .score {
-  border: 1px solid black;
   margin: 20px 20px;
   text-align: center;
+  font-weight: 700;
+  color: #2a5b93;
 }
 
 #instructions {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   float: left;
-  width: 450px;
+  width: 550px;
   height: 150px;
-  margin: 10px 20px;
-  position: relative;
+  margin: 0px 20px;
+  position: absolute;
   float: left;
 }
 
 #instructions > p {
   text-align: center;
-  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 200;
   font-size: 20px;
   padding: 5px;
   margin: 0;

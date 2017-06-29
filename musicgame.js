@@ -105,7 +105,7 @@ Quiz.prototype.displayTimer = function () {
   var i = 29;
   that = this;
   this.intervalId = setInterval(function () {
-      if (i > 10) {
+      if (i > 9) {
         $("#timer").html("0:" + i);
       }
       else if (i > 0) {
@@ -124,7 +124,7 @@ Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
   this.userAnswer = document.getElementById(answerClickedId).innerHTML;
   if (this.userAnswer == correctAnswer) {
     this.score += this.timer * 100;
-    // $("#timer").addClass("animated zoomOutDown");
+    $("#timer").addClass("animated zoomOutDown");
     $("#score").html(this.score);
       if (this.songsPlayed < 10) {
       $("#ready > p").html("Next Song");
