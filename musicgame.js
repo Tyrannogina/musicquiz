@@ -38,7 +38,7 @@ function Quiz() {
       { artist: "Cyndi Lauper",  title: "Girls Just Wanna Have Fun",  audio: "Cyndi Lauper - Girls Just Wanna Have Fun.mp3", similarArtists: ["Kim Wilde", "The Bangles", "Bonnie Tyler"], image: "cyndilauper.jpg", genre: "mix80"},
       { artist: "a-ha",  title: "Take On Me",  audio: "a-ha - Take On Me.mp3", similarArtists: ["Duran Duran", "Tears For Fears", "Simple Minds"], image: "aha.jpg", genre: "mix80"},
       { artist: "Soft Cell",  title: "Tainted Love",  audio: "Soft Cell - Tainted Love.mp3", similarArtists: ["Visage", "Bronski Beat", "Ultravox"], image: "softcell.jpg", genre: "mix80"},
-      { artist: "Wham!",  title: "Wake Me Up Before You Go-Go",  audio: "Wham - Wake Me Up Before You Go-Go.mp3", similarArtists: ["Gearge Michael", "Culture Club", "Go West"], image: "wham.jpg", genre: "mix80"}
+      { artist: "Wham!",  title: "Wake Me Up Before You Go-Go",  audio: "Wham - Wake Me Up Before You Go-Go.mp3", similarArtists: ["George Michael", "Culture Club", "Go West"], image: "wham.jpg", genre: "mix80"}
     ]
   ]
 
