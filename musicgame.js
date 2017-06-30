@@ -32,7 +32,7 @@ function Quiz() {
       { artist: "Eurythmics",  title: "Sweet Dreams",  audio: "Eurythmics - Sweet Dreams.mp3", similarArtists: ["Culture Club", "Kim Wilde", "Annie Lennox"], image: "eurythmics.jpg", genre: "mix80"},
       { artist: "George Michael",  title: "Faith",  audio: "George Michael - Faith.mp3", similarArtists: ["Wham!", "Simply Red", "Boy George"], image: "georgemichael.jpg", genre: "mix80"},
       { artist: "Prince",  title: "Kiss",  audio: "Prince - Kiss.mp3", similarArtists: ["Chaka Khan", "Curtis Mayfield", "Cameo"], image: "prince.jpg", genre: "mix80"},
-      { artist: "The Bangles",  title: "Walk Like An Egyptian",  audio: "The Bangles - Walk Like An Egyptian.mp3", similarArtists: ["Bananarama", "Culture Club", "The Pointer Sisters"], image: "thebangles.jpg", genre: "mix80"},
+      { artist: "The Bangles",  title: "Walk Like An Egyptian",  audio: "The Bangles - Walk Like an Egyptian.mp3", similarArtists: ["Bananarama", "Culture Club", "The Pointer Sisters"], image: "thebangles.jpg", genre: "mix80"},
       { artist: "Whitney Houston",  title: "I Wanna Dance With Somebody",  audio: "Whitney Houston - I Wanna Dance With Somebody.mp3", similarArtists: ["Janet Jackson", "Diana Ross", "Toni Braxton"], image: "whitneyhouston.jpg", genre: "mix80"},
       { artist: "Culture Club",  title: "Karma Chameleon",  audio: "Culture Club - Karma Chameleon.mp3", similarArtists: ["Boy George", "Spandau Ballet", "Wham!"], image: "cultureclub.jpg", genre: "mix80"},
       { artist: "Cyndi Lauper",  title: "Girls Just Wanna Have Fun",  audio: "Cyndi Lauper - Girls Just Wanna Have Fun.mp3", similarArtists: ["Kim Wilde", "The Bangles", "Bonnie Tyler"], image: "cyndilauper.jpg", genre: "mix80"},
