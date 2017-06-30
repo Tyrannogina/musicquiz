@@ -37,9 +37,10 @@ function Quiz() {
   this.userAnswer;
   this.userChoice = "";
   this.songsPlayed = 0;
+  this.goodAnswers = 0;
   this._shuffle(this.songs[0]);
   this._shuffle(this.songs[1]);
-
+  document.getElementById("ready").style.pointerEvents = "none";
 
 
 
@@ -83,6 +84,10 @@ Quiz.prototype._createArtistArray = function() {
   return this.artistsArray;
 };
 
+Quiz.prototype._displayRules = function () {
+  $("#instructions > p").html('Guess the artist of each song as quickly as possible. When a song starts, you will be given 4 possible answers. The faster you answer, the more points you get! Click "Ready" to start the first song.');
+}
+
 
 Quiz.prototype.generateAnswers = function (correctAnswer) {
   var artistIndex = quiz.artistsArray.indexOf(correctAnswer);
@@ -124,15 +129,16 @@ Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
   this.userAnswer = document.getElementById(answerClickedId).innerHTML;
   if (this.userAnswer == correctAnswer) {
     this.score += this.timer * 100;
+    this.goodAnswers += 1;
     $("#timer").addClass("animated zoomOutDown");
     $("#score").html(this.score);
       if (this.songsPlayed < 10) {
       $("#ready > p").html("Next Song");
-      $("#instructions > p").html("Correct! Click 'Next Song' when you are ready.");
+      $("#instructions > p").html("Correct! This is <strong>" + correctAnswer + "</strong>! You legend...<br> Click <strong>Next Song</strong> when you are ready.");
       }
       else {
         $("#ready > p").html("THE END");
-        $("#instructions > p").html("Correct! The game is over, refresh to play again!");
+        $("#instructions > p").html("Correct! This is <strong>" + correctAnswer + "</strong>! You rock!<br>The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Refresh to play again!");
         $("#ready").css("pointer-events", "none");
       }
       return true;
@@ -140,11 +146,11 @@ Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
   else {
     if (this.songsPlayed < 10) {
     $("#ready > p").html("Next Song");
-    $("#instructions > p").html("Wrong! Click 'Next Song' when you are ready.");
+    $("#instructions > p").html("Wrong! The correct answer was <strong>" + correctAnswer + "</strong>. Click <strong>Next Song</strong> when you are ready.");
     }
     else {
       $("#ready > p").html("THE END");
-      $("#instructions > p").html("Wrong! The game is over, refresh to play again!");
+      $("#instructions > p").html("Wrong! The correct answer was " + correctAnswer + ". The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Refresh to play again!");
       $("#ready").css("pointer-events", "none");
     }
     return false;
@@ -186,23 +192,26 @@ var songNumber = 0;
 var idSongPlaying = "";
 var answerClickedId = "";
 
-
+$(".play-ready-container").addClass("blocked");
 
 //ON CLICK USER CHOICE
 $(".option").on("click", function() {
   quiz.userChoice = ($(this).attr("id"));
   quiz._createDivs()
   quiz._createArtistArray();
-  $(".option").css("pointer-events", "none");
+  quiz._displayRules();
+  $(".option").addClass("blocked");
+  $(".play-ready-container").removeClass("blocked");
 });
 
 
 
 // ON CLICK PLAY-PAUSE SONG
 
-$(".ready").on("click", function() {
-  $("#ready").css("pointer-events", "none");
+$(".play-ready-container").on("click", function() {
+  $(".play-ready-container").addClass("blocked");
   $("#timer").removeClass("animated zoomOutDown");
+  $(".answer").addClass("hvr-underline-from-left");
   quiz.songsPlayed +=1;
   songNumber = songNumber + 1;
   idSongPlaying = "song" + songNumber;
@@ -228,7 +237,8 @@ $(".answer").on("click", function() {
   clearInterval(quiz.intervalId);
   quiz.givePoints(answerClickedId, correctAnswer);
   quiz.displayCover(correctAnswer);
-  $("#ready").css("pointer-events", "auto");
+  $(".play-ready-container").removeClass("blocked");
+  $(".answer").removeClass("hvr-underline-from-left");
 });
 
 
