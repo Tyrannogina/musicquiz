@@ -40,7 +40,6 @@ function Quiz() {
   this.goodAnswers = 0;
   this._shuffle(this.songs[0]);
   this._shuffle(this.songs[1]);
-  document.getElementById("ready").style.pointerEvents = "none";
 
 
 
@@ -138,8 +137,8 @@ Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
       }
       else {
         $("#ready > p").html("THE END");
-        $("#instructions > p").html("Correct! This is <strong>" + correctAnswer + "</strong>! You rock!<br>The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Refresh to play again!");
-        $("#ready").css("pointer-events", "none");
+        $("#instructions > p").html("Correct! This is <strong>" + correctAnswer + "</strong>! You rock!<br>The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Click here to play again!");
+        $("#instructions").removeClass("blocked");
       }
       return true;
   }
@@ -150,8 +149,8 @@ Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
     }
     else {
       $("#ready > p").html("THE END");
-      $("#instructions > p").html("Wrong! The correct answer was " + correctAnswer + ". The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Refresh to play again!");
-      $("#ready").css("pointer-events", "none");
+      $("#instructions > p").html("Wrong! The correct answer was " + correctAnswer + ". The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Click here to play again!");
+      $("#instructions").removeClass("blocked");
     }
     return false;
   }
@@ -240,8 +239,15 @@ $(".answer").on("click", function() {
   $(".play-ready-container").removeClass("blocked");
   $(".answer").removeClass("hvr-underline-from-left");
 });
+//END ANSWER CLICK
 
+// START INSTRUCTIONS CLICK
+$("#instructions").on("click", function() {
+  document.location.reload();
+  $("#instructions").addClass("blocked");
+});
 
+// END INSTRUCTIONS CLICK
 
 // Closing jQuery function
 });
