@@ -137,37 +137,37 @@ Quiz.prototype.displayTimer = function () {
   }, 1000);
 }
 
-
 Quiz.prototype.givePoints = function (answerClickedId, correctAnswer) {
   this.userAnswer = document.getElementById(answerClickedId).innerHTML;
   if (this.userAnswer == correctAnswer) {
     this.score += this.timer * 100;
     this.goodAnswers += 1;
+    this.updatePointsDisplay(true, correctAnswer)
+  } else {
+    this.updatePointsDisplay(false, correctAnswer)
+  }
+}
+
+Quiz.prototype.updatePointsDisplay = function (right, correctAnswer) {
+  var instrText, readyText;
+  if (right) {
     $("#timer").addClass("animated zoomOutDown");
     $("#score").html(this.score);
-      if (this.songsPlayed < 10) {
-      $("#ready > p").html("Next Song");
-      $("#instructions > p").html("Correct! This is <strong>" + correctAnswer + "</strong>! You legend...<br> Click <strong>Next Song</strong> when you are ready.");
-      }
-      else {
-        $("#ready > p").html("THE END");
-        $("#instructions > p").html("Correct! This is <strong>" + correctAnswer + "</strong>! You rock!<br>The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Click here to play again!");
-        $("#instructions").removeClass("blocked");
-      }
-      return true;
+    instrText = "Correct! This is <strong>" + correctAnswer + "</strong>!";
+  } else {
+    instrText = "Wrong! The correct answer was <strong>" + correctAnswer + "</strong>.";
+  } 
+
+  if (this.songsPlayed >= 10) {
+    $("#instructions").removeClass("blocked");
+    instrText += " You rock!<br>The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Click here to play again!"
+    readyText = "THE END";
+  } else {
+    instrText += " Click <strong>Next Song</strong> when you are ready.";
+    readyText = "Next Song";
   }
-  else {
-    if (this.songsPlayed < 10) {
-    $("#ready > p").html("Next Song");
-    $("#instructions > p").html("Wrong! The correct answer was <strong>" + correctAnswer + "</strong>. Click <strong>Next Song</strong> when you are ready.");
-    }
-    else {
-      $("#ready > p").html("THE END");
-      $("#instructions > p").html("Wrong! The correct answer was " + correctAnswer + ". The game is over, you found <strong>" + this.goodAnswers + " good answers</strong> and scored <strong>" + this.score + " points</strong>! Click here to play again!");
-      $("#instructions").removeClass("blocked");
-    }
-    return false;
-  }
+  $("#instructions > p").html(instrText);
+  $("#ready > p").html(readyText);
 }
 
 
